@@ -1,5 +1,5 @@
 # HCL-Graphics-Manager
-Hydra Castle Labyrinth Graphics Manager is a java program designed to help moddify Hydra Castle Labyrinth's graphics data.
+Hydra Castle Labyrinth Graphics Manager is a java program designed to help modify Hydra Castle Labyrinth's graphics data.
 This program can also be used for Buster's other games. However, my only concern is that it works with Hydra Castle Labyrinth.
 
 Hydra Castle Labyrinth info page (japanese)
