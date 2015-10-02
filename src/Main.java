@@ -27,8 +27,11 @@ public class Main {
 		localPath = localPath.substring(0,  localPath.length() - 1);
 		loadConfig();
 
-		if (!gfxFileLocation.equals("")) {
-			loadGfxFile();
+		showButtons(false);
+		if (getFileExtension(gfxFileLocation).equals("qda")) {
+			if (loadGfxFile() == true) {
+				showButtons(true);
+			}
 		}
 	}
 	
@@ -39,15 +42,15 @@ public class Main {
 	}
 		
 	//The method performs all tasks  that occur when a .qda file is selected
-	private static void loadGfxFile() throws IOException {
-		if (!gfxFileLocation.equals("")) {
-			showButtons(false);
-			populateFileNames();
+	private static boolean loadGfxFile() throws IOException {
+		boolean result = true;
+		if (populateFileNames() == true) {
 			populateSheetIndex();
 			updatePreview(Window.cbFileNames.getSelectedIndex());
-			showButtons(true);
+		}else{
+			result = false;
 		}
-		
+		return result;
 	}
 	
 	//Searches the file for sheets and saves their locations
@@ -90,6 +93,20 @@ public class Main {
 		}
 	}
 	
+	public static String getFileExtension(String path) {
+		String result = "";
+		
+		for (int i = path.length() - 1; i > 0; i--) {
+			if (path.charAt(i) != '.') {
+				result = path.charAt(i) + result;
+			}else{
+				i = 0;
+			}
+		}
+		
+		return result;
+	}
+	
 	public static void openQdaFile() throws IOException {
 		File dialogPath = new File(gfxFileLocation);
 		if (gfxFileLocation.equals("")) {
@@ -105,13 +122,20 @@ public class Main {
 			showButtons(false);
 			
 			File gfxFile = chooser.getSelectedFile();
+			System.out.println(getFileExtension(gfxFile.getPath()));
 			
-			gfxFileLocation = gfxFile.toString();
+			if (getFileExtension(gfxFile.getPath()).equals("qda")){				
+				gfxFileLocation = gfxFile.toString();
+			}else{
+				Window.showMessage("Please select a file with a .qda extension.");
+			}
 			
-			saveConfig();
-			loadGfxFile();
+			if (loadGfxFile() == true) {
+				saveConfig();					
+				showButtons(true);
+			}
 			
-			showButtons(true);
+			
 		}
 	}
 	
@@ -277,7 +301,9 @@ public class Main {
 		}
 	}
 	
-	private static void populateFileNames() {
+	private static boolean populateFileNames() {
+		boolean result = true;
+		
 		Window.clearFileNames();
 		InputStream is = null;
 		int thisByte;
@@ -330,6 +356,8 @@ public class Main {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			Window.showMessage(e.getMessage());
+			result = false;
 		}finally {
 			
 			if (is!= null) {
@@ -339,6 +367,8 @@ public class Main {
 			}
 			
 		}
+		
+		return result;
 		
 	}
 	
