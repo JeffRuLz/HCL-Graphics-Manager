@@ -45,6 +45,7 @@ public class Window extends JFrame implements ActionListener, ItemListener {
 				try {
 					Main.openQdaFile();
 				} catch (IOException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -76,8 +77,12 @@ public class Window extends JFrame implements ActionListener, ItemListener {
 		btnExport = new JButton("Export...");
 		btnExport.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent arg0) {
-				Main.exportImage();
+			public void mouseClicked(MouseEvent arg0) {
+				
+				if (btnExport.isEnabled() == true) {
+					Main.exportImage();
+				}
+				
 			}
 		});
 		btnExport.setBounds(416, 42, 146, 23);
@@ -86,13 +91,17 @@ public class Window extends JFrame implements ActionListener, ItemListener {
 		btnImport = new JButton("Import...");
 		btnImport.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent arg0) {
-				try {
-					Main.importImage();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			public void mouseClicked(MouseEvent arg0) {
+				
+				if (btnImport.isEnabled() == true) {
+					try {
+						Main.importImage();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
+				
 			}
 		});
 		btnImport.setBounds(416, 76, 146, 23);
