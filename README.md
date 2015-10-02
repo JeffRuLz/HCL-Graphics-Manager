@@ -28,6 +28,8 @@ HCL Graphics Manager can pluck out a BMP file and import an edited version back 
 
 ==Using HCLGM (for total dummies)==
 
+(Now in video form: https://youtu.be/TsoYnMzWMB0)
+
 (Exporting)
 
 1. Run the .jar file and select File > Open Bmp.qda...
