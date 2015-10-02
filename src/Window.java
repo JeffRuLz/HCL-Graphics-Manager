@@ -30,7 +30,7 @@ public class Window extends JFrame implements ActionListener, ItemListener {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 588, 473);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Hydra Castle Graphics Manager v1.0");
+		frame.setTitle("Hydra Castle Graphics Manager v1.1");
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
