@@ -21,9 +21,7 @@ public class Preview extends Canvas {
 		        g2.drawImage(bi, 0, 0, null);
 		        g2.dispose();
 			}
-
-		} catch (IOException e) {e.printStackTrace();}
-	
-     }
-	
+		} catch (IOException e) {}
+		
+     }	
 }
